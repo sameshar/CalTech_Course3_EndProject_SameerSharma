@@ -1,12 +1,16 @@
 package com.BookingMyCabBuddy.controller;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.BookingMyCabBuddy.bean.Booking;
 import com.BookingMyCabBuddy.bean.Customer;
 import com.BookingMyCabBuddy.service.BookingService;
 
@@ -16,11 +20,13 @@ public class BookingController {
 	@Autowired
 	BookingService bookingService;
 
-	@RequestMapping(value = "/index")
-	public String bookACab() {
-		return "index";
+	//http://localhost:8762/createbooking
+	@PostMapping(value = "createbooking", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public String createBooking(@ModelAttribute Booking booking) {
+		System.out.println(booking.toString());
+		return bookingService.createBooking(booking);
+		
 	}
-	
 
 	
 }

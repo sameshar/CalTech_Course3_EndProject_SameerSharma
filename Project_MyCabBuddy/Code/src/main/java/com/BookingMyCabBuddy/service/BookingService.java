@@ -1,13 +1,16 @@
 package com.BookingMyCabBuddy.service;
 
 import java.awt.PageAttributes.MediaType;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.BookingMyCabBuddy.bean.Booking;
 import com.BookingMyCabBuddy.bean.Customer;
 import com.BookingMyCabBuddy.dao.BookingDAO;
+import com.BookingMyCabBuddy.dao.CustomerDAO;
 
 @Service
 public class BookingService {
@@ -15,5 +18,24 @@ public class BookingService {
 	@Autowired
 	BookingDAO bookingdao;
 	
+	@Autowired
+	CustomerDAO customerDAO;
+	
+	//method to generate a random integer for bookingID
+//		public int intGenerator() {
+//			Random randomintgen = new Random();
+//			return randomintgen.nextInt(1000);
+//		}
+	
+	//generate bookingID
+//	int bookingID = intGenerator();
+//	System.out.println(bookingID);
+//	booking.setBookingID(bookingID);
+	
+	public String createBooking(Booking booking) {
+
+		bookingdao.saveAndFlush(booking);	
+		return "Booking Saved";
+	}
 
 }

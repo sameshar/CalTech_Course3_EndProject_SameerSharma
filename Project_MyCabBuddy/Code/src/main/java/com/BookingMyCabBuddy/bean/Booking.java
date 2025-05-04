@@ -1,7 +1,12 @@
 package com.BookingMyCabBuddy.bean;
 
+import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.lang.NonNull;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
@@ -17,6 +22,7 @@ public class Booking {
 	private double finalAmt;
 	
 	@Column(unique = true)
+	@NonNull
 	private String confirmationNum;
 
 	public int getBookingID() {
@@ -85,6 +91,11 @@ public class Booking {
 		this.ratePerMile = ratePerMile;
 		this.finalAmt = finalAmt;
 		this.confirmationNum = confirmationNum;
+	}
+	
+	public Booking() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
