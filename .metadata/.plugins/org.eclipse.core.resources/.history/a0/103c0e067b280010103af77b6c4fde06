@@ -1,0 +1,5 @@
+package com.BookingMyCabBuddy.dao;
+
+public class BookingDAO {
+
+}

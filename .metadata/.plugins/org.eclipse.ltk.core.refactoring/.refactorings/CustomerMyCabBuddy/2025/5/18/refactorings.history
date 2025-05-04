@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;CustomerMyCabBuddy/src/main/resources/templates/customerPortal.html&apos; to &apos;index.html&apos;" description="Rename resource &apos;customerPortal.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/resources/templates/customerPortal.html" name="index.html" stamp="1746207166130" updateReferences="true"/>
+</session>

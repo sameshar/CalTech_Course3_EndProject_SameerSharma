@@ -1,0 +1,20 @@
+package com.BookingMyCabBuddy.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.BookingMyCabBuddy.bean.Customer;
+import com.BookingMyCabBuddy.dao.CustomerDAO;
+
+@Service
+public class CustomerService {
+
+	@Autowired
+	CustomerDAO customerDAO;
+	
+	
+	public String createCustomer(Customer customer) {
+		System.out.println("SC" + customer.toString());
+		return "customer saves";
+	}
+}

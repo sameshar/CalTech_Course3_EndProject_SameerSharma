@@ -1,0 +1,21 @@
+package com.BookingMyCabBuddy.service;
+
+import java.awt.PageAttributes.MediaType;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.BookingMyCabBuddy.bean.Customer;
+
+@Service
+public class BookingService {
+
+	public Customer createCustomer(Customer customer) {
+		customer.getCustomerName();
+		customer.setEmail("email");
+		customer.setPhoneNumber(customer.getPhoneNumber());
+		customer.setPaymentMethod("payment");
+		System.out.println(customer.toString());
+		return customer;
+	}
+}

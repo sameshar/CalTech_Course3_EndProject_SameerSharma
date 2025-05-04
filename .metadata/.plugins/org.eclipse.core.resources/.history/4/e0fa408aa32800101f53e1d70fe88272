@@ -1,0 +1,40 @@
+package com.BookingMyCabBuddy.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
+
+import com.BookingMyCabBuddy.bean.Customer;
+import com.BookingMyCabBuddy.dao.CustomerDAO;
+
+@Service
+public class CustomerService {
+
+	@Autowired
+	CustomerDAO customerDAO;
+	
+	public List<Customer> searchByEmail(String email) {
+		System.out.println("email checked");
+        return customerDAO.findByEmailContaining(email);
+	}
+	
+	public String createCustomer(Customer customer) {
+		System.out.println("SC > " + customer.toString());
+		Optional<Customer> result = customerDAO.findById(customer.getCustomerID());
+		String resultEmail = customer.getEmail();
+		
+		if (result.isPresent()) {
+			return "Customer ID already exists";
+		} else if (searchByEmail(customer.getEmail()).isEmpty()) {
+			return "Customer Email already exists." + resultEmail;
+		} else {
+			//customerDAO.saveAndFlush(customer);
+			return "customer saves";
+		}
+		
+		
+	}
+}

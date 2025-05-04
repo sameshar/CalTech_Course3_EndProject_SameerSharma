@@ -1,0 +1,21 @@
+package com.BookingMyCabBuddy.controller;
+
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.BookingMyCabBuddy.bean.Customer;
+
+@RestController
+public class CustomerController {
+
+	@PostMapping(value = "createCustomer", consumes = MediaType.APPLICATION_JSON_VALUE)
+	public Customer createCustomer(Customer customer) {
+		customer.getCustomerName();
+		customer.setEmail("email");
+		customer.setPhoneNumber(customer.getPhoneNumber());
+		customer.setPaymentMethod("payment");
+		System.out.println(customer.toString());
+		return customer;
+	}
+}

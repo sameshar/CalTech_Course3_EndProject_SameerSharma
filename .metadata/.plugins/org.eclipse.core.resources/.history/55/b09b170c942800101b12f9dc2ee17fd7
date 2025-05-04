@@ -1,0 +1,5 @@
+package com.BookingMyCabBuddy.controller;
+
+public class CustomerController {
+
+}

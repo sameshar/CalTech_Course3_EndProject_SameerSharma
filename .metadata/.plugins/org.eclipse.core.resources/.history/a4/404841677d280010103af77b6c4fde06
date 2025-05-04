@@ -1,0 +1,21 @@
+package com.BookingMyCabBuddy.bean;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+
+@Entity
+public class Customer {
+
+	@Id
+	@Column(unique = true)
+	@JoinColumn(name = "bookingID", nullable = false)
+	private String customerID;
+	private String customerName;
+	
+	@Column(unique = true)
+	private String email;
+	private String phoneNumber;
+	private String paymentMethod;
+}

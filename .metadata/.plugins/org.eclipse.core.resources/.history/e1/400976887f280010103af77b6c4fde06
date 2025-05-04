@@ -1,0 +1,18 @@
+package com.BookingMyCabBuddy.service;
+
+import java.awt.PageAttributes.MediaType;
+
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.BookingMyCabBuddy.bean.Customer;
+
+@Service
+public class BookingService {
+
+	@GetMapping(value = "/create")
+	public String createCustomer(Customer customer) {
+		System.out.println(customer.toString());
+		return "Customer information recieved";
+	}
+}
