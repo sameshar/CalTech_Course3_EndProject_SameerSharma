@@ -19,12 +19,13 @@ public class BookingController {
 	
 	@Autowired
 	BookingService bookingService;
+	
 
 	//http://localhost:8762/createbooking
 	@PostMapping(value = "createbooking", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public String createBooking(@ModelAttribute Booking booking) {
+	public String createBooking(@ModelAttribute Booking booking, String email) {
 		System.out.println(booking.toString());
-		return bookingService.createBooking(booking);
+		return bookingService.createBooking(booking, email);
 		
 	}
 

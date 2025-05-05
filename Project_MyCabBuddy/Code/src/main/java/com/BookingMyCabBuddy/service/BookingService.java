@@ -1,6 +1,7 @@
 package com.BookingMyCabBuddy.service;
 
 import java.awt.PageAttributes.MediaType;
+import java.util.Optional;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,10 @@ public class BookingService {
 	BookingDAO bookingdao;
 	
 	@Autowired
-	CustomerDAO customerDAO;
+	CustomerService custService;
+	
+	@Autowired
+	CustomerDAO custDAO;
 	
 	//method to generate a random integer for bookingID
 //		public int intGenerator() {
@@ -32,10 +36,22 @@ public class BookingService {
 //	System.out.println(bookingID);
 //	booking.setBookingID(bookingID);
 	
-	public String createBooking(Booking booking) {
-
-		bookingdao.saveAndFlush(booking);	
-		return "Booking Saved";
-	}
-
-}
+	public String createBooking(Booking booking, String email) {
+			System.out.println("ServiceClass.ValidationMethod > " + booking.toString() + email);
+			//Optional<Customer> result = custDAO.findById(customerID);
+			String resultEmail = email;
+			
+//			if (result.isEmpty()) {
+//				return "Customer ID entered do not exist. <a href='http://localhost:8762/'>Register here</a>";
+//			} else 
+				if (resultEmail != null) {
+				boolean exists = custDAO.existsByEmail(resultEmail);
+		        System.out.println("Found the email address in the db? " + exists);
+		        if (exists == true) {
+		        	return "Customer Email entered do not exist. <a href='http://localhost:8762/#customerPortalForm'>Register here</a>";
+		        } else {
+		        	bookingdao.saveAndFlush(booking);
+		        }
+			}
+			return "Booking Saves";
+			}}

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import com.BookingMyCabBuddy.bean.Booking;
 import com.BookingMyCabBuddy.bean.Customer;
 import com.BookingMyCabBuddy.dao.CustomerDAO;
 
@@ -16,7 +17,7 @@ public class CustomerService {
 	@Autowired
 	CustomerDAO customerDAO;
 	
-
+	//Method to create a customer account after ID and Email address uniqueness validation
 	
 	public String createCustomer(Customer customer) {
 		System.out.println("SC > " + customer.toString());
@@ -36,4 +37,5 @@ public class CustomerService {
 		}
 		return "customer saves";
 	}
+	
 }
