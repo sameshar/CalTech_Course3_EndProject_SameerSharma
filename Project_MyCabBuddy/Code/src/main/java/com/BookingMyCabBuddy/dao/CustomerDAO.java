@@ -1,10 +1,11 @@
 package com.BookingMyCabBuddy.dao;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.BookingMyCabBuddy.bean.Customer;
@@ -12,5 +13,6 @@ import com.BookingMyCabBuddy.bean.Customer;
 @Repository
 public interface CustomerDAO extends JpaRepository<Customer, Integer>{
 
-	boolean existsByEmail(String email);
+	@Query("select c.email from Customer c where c.email=:email")
+	public String existsByEmail(@Param("email") String email);
 }

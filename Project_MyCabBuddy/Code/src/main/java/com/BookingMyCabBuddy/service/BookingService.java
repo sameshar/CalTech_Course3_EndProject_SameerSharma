@@ -37,20 +37,23 @@ public class BookingService {
 //	booking.setBookingID(bookingID);
 	
 	public String createBooking(Booking booking, String email) {
-			System.out.println("ServiceClass.ValidationMethod > " + booking.toString() + email);
-			//Optional<Customer> result = custDAO.findById(customerID);
-			String resultEmail = email;
+			System.out.println("ServiceClass.ValidationMethod > " + booking.toString() + email.toString());
+			
+			//Optional<Customer> result = custDAO.findById(customer.getCustomerID());			
+						
+			//Business Logic
 			
 //			if (result.isEmpty()) {
 //				return "Customer ID entered do not exist. <a href='http://localhost:8762/'>Register here</a>";
 //			} else 
-				if (resultEmail != null) {
-				boolean exists = custDAO.existsByEmail(resultEmail);
-		        System.out.println("Found the email address in the db? " + exists);
-		        if (exists == true) {
+				if (email != null) {
+				String exists = custDAO.existsByEmail(email);
+				System.out.println(exists);
+		        if (exists == null) {
 		        	return "Customer Email entered do not exist. <a href='http://localhost:8762/#customerPortalForm'>Register here</a>";
 		        } else {
-		        	bookingdao.saveAndFlush(booking);
+		        	bookingdao.save(booking);
+		        	System.out.println(booking);
 		        }
 			}
 			return "Booking Saves";

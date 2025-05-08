@@ -7,12 +7,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EntityScan(basePackages = "com.BookingMyCabBuddy")
+@EntityScan(basePackages = "com.BookingMyCabBuddy.bean")
 public class BookingMyCabBuddyApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BookingMyCabBuddyApplication.class, args);
 		System.out.println("Booking micro service main class loaded.");
 	}
-
 }

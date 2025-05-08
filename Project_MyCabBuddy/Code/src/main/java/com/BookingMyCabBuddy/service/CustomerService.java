@@ -23,19 +23,29 @@ public class CustomerService {
 		System.out.println("SC > " + customer.toString());
 		Optional<Customer> result = customerDAO.findById(customer.getCustomerID());
 		String resultEmail = customer.getEmail();
-		
 		if (result.isPresent()) {
-			return "Customer ID already exists";
-		} else if (resultEmail != null) {
-			boolean exists = customerDAO.existsByEmail(resultEmail);
-	        System.out.println("Didn't find the email address in the db? " + exists);
-	        if (exists == true) {
-	        	return "Customer email already exists";
-	        } else {
-	        	customerDAO.saveAndFlush(customer);
-	        }
+			Customer cc = result.get();
+			if (cc.getEmail().equals(resultEmail)) {
+				return "email exists";
+			}
+		} else {
+			customerDAO.save(customer);
+			
 		}
-		return "customer saves";
+		
+//		if (result.isPresent()) {
+//			return "Customer ID already exists";
+//		} else if (resultEmail == null) {
+//			String exists = customerDAO.existsByEmail(resultEmail);
+//	        System.out.println("Didn't find the email address in the db? " + exists);
+//	        if (exists != null) {
+//	        	return "Customer email already exists";
+//	        } else {
+//	        	customerDAO.save(customer);
+//	        }
+//		}
+//		return "customer saves";
+		return "customer detail stored";
 	}
 	
 }

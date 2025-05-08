@@ -1,0 +1,11 @@
+// script.js
+document.getElementById("bookCabBtn").addEventListener("click", function() {
+    document.getElementById("bookCabForm").style.display = "block";
+    document.getElementById("customerPortalForm").style.display = "none";
+});
+
+document.getElementById("customerPortalBtn").addEventListener("click", function() {
+    document.getElementById("customerPortalForm").style.display = "block";
+    document.getElementById("bookCabForm").style.display = "none";
+	});
+	

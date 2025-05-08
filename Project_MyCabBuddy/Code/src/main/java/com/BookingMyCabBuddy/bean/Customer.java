@@ -1,18 +1,22 @@
 package com.BookingMyCabBuddy.bean;
 
+import java.util.List;
+
 import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
 public class Customer {
 
 	@Id
-	//@Column(unique = true)
-	@NonNull
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int customerID;
 	private String customerName;
 	
@@ -20,6 +24,8 @@ public class Customer {
 	private String email;
 	private String phoneNumber;
 	private String paymentMethod;
+
+	//Setter & Getter Methods
 	
 	public int getCustomerID() {
 		return customerID;
@@ -61,7 +67,7 @@ public class Customer {
 		this.paymentMethod = paymentMethod;
 	}
 
-	
+	//Constructors
 
 	public Customer() {
 		super();
@@ -77,6 +83,8 @@ public class Customer {
 		this.paymentMethod = paymentMethod;
 	}
 
+	//toString
+	
 	@Override
 	public String toString() {
 		return "Customer [customerID=" + customerID + ", customerName=" + customerName + ", email=" + email

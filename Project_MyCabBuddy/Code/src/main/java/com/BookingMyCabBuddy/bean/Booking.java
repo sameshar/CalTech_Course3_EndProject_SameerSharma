@@ -8,13 +8,15 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Booking {
 
 	@Id
-	@Column(unique = true)
-	private int bookingID;
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private String bookingID;
 	private String source_loc;
 	private String destination_loc;
 	private double distanceTravelled;
@@ -24,12 +26,22 @@ public class Booking {
 	@Column(unique = true)
 	@NonNull
 	private String confirmationNum;
+	
+	private String email;
 
-	public int getBookingID() {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getBookingID() {
 		return bookingID;
 	}
 
-	public void setBookingID(int bookingID) {
+	public void setBookingID(String bookingID) {
 		this.bookingID = bookingID;
 	}
 
@@ -81,7 +93,7 @@ public class Booking {
 		this.confirmationNum = confirmationNum;
 	}
 
-	public Booking(int bookingID, String source_loc, String destination_loc, double distanceTravelled,
+	public Booking(String bookingID, String source_loc, String destination_loc, double distanceTravelled,
 			double ratePerMile, double finalAmt, String confirmationNum) {
 		super();
 		this.bookingID = bookingID;
@@ -104,6 +116,4 @@ public class Booking {
 				+ ", distanceTravelled=" + distanceTravelled + ", ratePerMile=" + ratePerMile + ", finalAmt=" + finalAmt
 				+ ", confirmationNum=" + confirmationNum + "]";
 	}
-	
-	
 }

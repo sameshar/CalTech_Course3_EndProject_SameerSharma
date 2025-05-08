@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+<title>My Cab Buddy</title>
+</head>
+<body>
+<h2>My Cab Buddy</h2>
+<div class="container">
+        <button id="bookCabBtn">Book a Cab</button>
+        <button id="customerPortalBtn">Customer Portal</button>
+        
+        <div class="form-container" id="bookCabForm">
+            <h2>Book a Cab</h2>
+            <form action="/createbooking" method="post">
+            <label for="bookingID">Booking ID 🆔</label>
+            <input type="number" id="bookingID" name="bookingID">
+            <input type="email" id="email" name="email">
+            <button type="submit">Find a Cab</button>
+            <label for="source_loc">Source 📍</label>
+            <input type="text" id="source_loc" name="source_loc">
+            <label for="destination_loc">Destination 📍</label>
+            <input type="text" id="destination_loc" name="destination_loc">
+            <label for="distanceTravelled">Distance 🆔</label>
+            <input type="number" id="distanceTravelled" name="distanceTravelled">
+            <label for="ratePerMile">Rate</label>
+            <input type="number" id="ratePerMile" name="ratePerMile">
+            <label for="finalAmt">Final Amount</label>
+            <input type="number" id="finalAmt" name="finalAmt">
+            <label for="confirmationNum">Confirmation Number</label>
+            <input type="text" id="confirmationNum" name="confirmationNum">
+            <label for="email">Email Address 📫</label>
+            
+            </form>
+        </div>
+
+        <div class="form-container" id="customerPortalForm">
+            <h2>Customer Portal</h2>
+            <form action="/createcustomer" method="post">
+            <label for="customerID">ID 🆔</label>
+            <input type="number" id="customerID" name="customerID">
+            <label for="customerName">Name 📇</label>
+            <input type="text" id="customerName" name="customerName">
+            <label for="phoneNumber">Phone Number ☎️</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+            <label for="email">Email Address 📫</label>
+            <input type="email" id="email" name="email">
+            <label for="paymentMethod">Payment Method 💳</label>
+            <input type="text" id="paymentMethod" name="paymentMethod">
+            <button type="submit">Create an Account</button>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

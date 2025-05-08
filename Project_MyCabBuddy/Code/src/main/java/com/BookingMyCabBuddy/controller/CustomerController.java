@@ -18,6 +18,7 @@ public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 
+	// http://localhost:8762/createcustomer
 	@PostMapping(value = "createcustomer", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public String createCustomer(@ModelAttribute Customer customer) {
 		System.out.println(customer.toString());

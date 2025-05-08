@@ -40,6 +40,17 @@ button:hover {
     text-align: left;
 }
 
+.form-container1 {
+    display: none;
+    margin-top: 0px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: #1C1C1C;
+    width: 400px;
+    margin: auto;
+    text-align: left;
+}
+
 h2 {
     text-align: center;
     font-weight: bold;
@@ -70,9 +81,46 @@ input:focus {
 }
 
 button:last-child {
-    background-color: #008CFF;
+    background-color: #1e81b0;
 }
 
 button:last-child:hover {
-    background-color: #0073E6;
+    background-color: #1e81b0;
+}
+
+.tab {
+      display: none;
+}
+        .tab.active {
+            display: block;
+        }
+        .customerPortalTab {
+            display: table-header-group;
+            cursor: pointer;
+        	width: 25%;
+            padding: 10px;
+            border-bottom: 1px solid #492117;
+            margin: auto;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        .customerPortalTab .active {
+            background-color: aqua;
+        }
+        
+        .customerPortalTab:hover{
+            background-color: #492117;
+        }
+        
+.customerPortaltabs
+{
+	display: flex;
+	align-content: center;
+}
+
+#customerPortalForm
+{
+	justify-content: center;
+  align-items: center;
 }
