@@ -1,16 +1,23 @@
 package com.BookingMyCabBuddy.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.BookingMyCabBuddy.bean.Customer;
 import com.BookingMyCabBuddy.dao.CustomerDAO;
 import com.BookingMyCabBuddy.service.CustomerService;
+import jakarta.websocket.server.PathParam;
 
 @RestController
 public class CustomerController {
@@ -26,5 +33,39 @@ public class CustomerController {
 		//return "customer";
 	}
 	
+	// http://localhost:8762/findcustomer/{customerid}
+		@GetMapping(value = "findcustomer/{customerid}")
+		public Optional<Customer> findcustomer(@PathVariable("customerid") int customerid, Model mm, Optional<Customer> customer) {
+			System.out.println("Controller FindCustomer Method " + customerid);
+			mm.addAttribute("customer", customer);
+			customer = customerService.findCustomer(customerid);
+			return customer;
+		}
+	
+		// http://localhost:8762/updatecustomer/{customerID}
+		@PutMapping(value = "updatecustomer/{customerID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+		public String updatecustomer(@PathVariable("customerID") int customerID, @RequestBody Customer customer){
+			Optional<Customer> custidresult = customerService.findCustomer(customerID);
+			System.out.println("from Controller ~ Update method " + custidresult); 
+			if (custidresult.isPresent()) {
+				customerService.updateCustomer(customerID, customer);
+				return "customer id present";
+			} else {
+				return "customer id not found";
+			}
+		}
+		
+		// http://localhost:8762/deletecustomer/{customerID}
+		@DeleteMapping(value = "deletecustomer/{customerID}", consumes = MediaType.APPLICATION_JSON_VALUE)
+		public String deletecustomer(@PathVariable("customerID") int customerID){
+			Optional<Customer> custidresult = customerService.findCustomer(customerID);
+			System.out.println("from Controller ~ Delete method " + custidresult); 
+			if (custidresult.isPresent()) {
+				customerService.deleteCustomer(customerID);
+				return "customer id existed and deleted";
+			} else {
+				return "customer id not found";
+			}
+		}
+}	
 
-}

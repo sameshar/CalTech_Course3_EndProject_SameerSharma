@@ -20,7 +20,6 @@ public class Customer {
 	private int customerID;
 	private String customerName;
 	
-	@Column(unique = true)
 	private String email;
 	private String phoneNumber;
 	private String paymentMethod;

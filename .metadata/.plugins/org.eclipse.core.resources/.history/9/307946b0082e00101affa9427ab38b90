@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th=”http://www.Thymeleaf.org/”>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+<title>My Cab Buddy</title>
+</head>
+<body>
+<h2>My Cab Buddy</h2>
+<div class="container">
+        <button id="bookCabBtn">Book a Cab</button>
+        <button id="customerPortalBtn">Customer Portal</button>
+               
+        <div class="form-container" id="bookCabForm">
+            <h2>Book a Cab</h2>
+            <form action="/createbooking" method="post">
+            <label for="bookingID">Booking ID 🆔</label>
+            <input type="number" id="bookingID" name="bookingID">
+            <label for="email">Email Address 📫</label>
+            <input type="email" id="email" name="email">
+            <label for="source_loc">Source 📍</label>
+            <input type="text" id="source_loc" name="source_loc">
+            <label for="destination_loc">Destination 📍</label>
+            <input type="text" id="destination_loc" name="destination_loc">
+            <label for="distanceTravelled">Distance 🆔</label>
+            <input type="number" id="distanceTravelled" name="distanceTravelled">
+            <label for="ratePerMile">Rate</label>
+            <input type="number" id="ratePerMile" name="ratePerMile">
+            <label for="finalAmt">Final Amount</label>
+            <input type="number" id="finalAmt" name="finalAmt">
+            <label for="confirmationNum">Confirmation Number</label>
+            <input type="text" id="confirmationNum" name="confirmationNum">
+            <button type="submit">Find a Cab</button>
+            </form>
+        </div>
+
+        <div class="form-container" id="customerPortalForm">
+            <h2>Customer Portal</h2>
+    <div class="customerPortaltabs">
+        <div class="customerPortalTab active" data-tab="customerCreateForm">Create Account</div>
+        <div class="customerPortalTab" data-tab="customerUpdateForm">Update Info.</div>
+        <div class="customerPortalTab" data-tab="customerViewForm">View Customers</div>
+    </div>
+    
+            <div class="form-container1 tab active" id="customerCreateForm">
+            <form action="/createcustomer" method="post" name="customerCreateForm" onsubmit="validateForm()">
+<!--        <label for="customerID">ID 🆔</label>
+            <input type="number" id="customerID" name="customerID"> -->
+            <label for="customerName">Name 📇</label>
+            <input type="text" id="customerName" name="customerName">
+            <label for="phoneNumber">Phone Number ☎️</label>
+            <input type="text" id="phoneNumber" name="phoneNumber">
+            <label for="email">Email Address 📫</label>
+            <input type="email" id="email" name="email">
+            <label for="paymentMethod">Payment Method 💳</label>
+            <input type="text" id="paymentMethod" name="paymentMethod">
+            <button type="submit">Create an Account</button>
+            </form>
+            </div>
+            
+            <div class="form-container1 tab" id="customerUpdateForm">
+	            <form action="/updatecustomer" method="post">
+		<!--        <label for="customerID">ID 🆔</label>
+		            <input type="number" id="customerID" name="customerID"> -->
+		            <label for="email">Email Address 📫</label>
+		            <input type="email" id="email" name="email">
+		            <label for="customerName">Name 📇</label>
+		            <input type="text" id="customerName" name="customerName">
+		            <label for="phoneNumber">Phone Number ☎️</label>
+		            <input type="text" id="phoneNumber" name="phoneNumber">
+		            
+		            <label for="paymentMethod">Payment Method 💳</label>
+		            <input type="text" id="paymentMethod" name="paymentMethod">
+		            <button type="submit">Update</button>
+	            </form>
+            </div>
+            
+            <div class="form-container1 tab" id="customerViewForm">
+	            <form action="/findCustomer" method="get">
+			        <label for="customerID">Enter Customer ID 🆔</label>
+		            <input type="number" id="customerID" name="customerID"> 
+		            <button type="submit">Find Customer 🔍</button>
+		            
+		            <div th:if="${cc != null}">
+        			<h2>Customer Details</h2>
+      		  		<p><strong>ID:</strong> <span th:text="${cc.customerid}"></span></p>
+        			<p><strong>Name:</strong> <span th:text="${cc.customername}"></span></p>
+        			<p><strong>Email:</strong> <span th:text="${cc.email}"></span></p>
+        			<p><strong>Phone Number:</strong> <span th:text="${cc.phonenumber}"></span></p>
+        			<p><strong>Payment Method:</strong> <span th:text="${cc.paymentmethod}"></span></p>
+    				</div>
+	            </form>
+            </div>
+        </div>
+    
+        </div>
+        
+        
+    <script src="script.js"></script>
+</body>
+</html>

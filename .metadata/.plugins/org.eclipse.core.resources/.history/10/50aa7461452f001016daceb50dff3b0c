@@ -1,0 +1,18 @@
+package com.BookingMyCabBuddy.dao;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
+
+import com.BookingMyCabBuddy.bean.Customer;
+
+@Repository
+public interface CustomerDAO extends JpaRepository<Customer, Integer>{
+
+	@Query("select c.email from Customer c where c.email=:email")
+	public String existsByEmail(@Param("email") String email);
+	
+	@Query("UPDATE Customer c SET c.email:emaile where c.customer_id=:customerID")
+	public String updateCustomer(@Param("customerID") int customerID);
+}

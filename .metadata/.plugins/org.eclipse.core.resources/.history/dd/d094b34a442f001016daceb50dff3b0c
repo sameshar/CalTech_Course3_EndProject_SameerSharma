@@ -1,0 +1,59 @@
+package com.BookingMyCabBuddy.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Service;
+
+import com.BookingMyCabBuddy.bean.Booking;
+import com.BookingMyCabBuddy.bean.Customer;
+import com.BookingMyCabBuddy.dao.CustomerDAO;
+
+@Service
+public class CustomerService {
+
+	@Autowired
+	CustomerDAO customerDAO;
+	
+	//Method to create a customer account after ID and Email address uniqueness validation
+	
+	public String createCustomer(Customer customer) {
+		System.out.println("SC > " + customer.toString());
+		Optional<Customer> result = customerDAO.findById(customer.getCustomerID());
+		String resultEmail = customer.getEmail();
+		if (result.isPresent()) {
+			Customer cc = result.get();
+			if (cc.getEmail().equals(resultEmail)) {
+				return "email exists";
+			}
+		} else {
+			customerDAO.save(customer);
+			
+		}
+		return "customer detail stored";
+	}
+	
+	//Method to create a customer account after ID and Email address uniqueness validation
+	
+	public Optional<Customer> findCustomer(int customerid) {
+		Optional<Customer> searchCustomerResult = customerDAO.findById(customerid);
+		System.out.println("Service Class ~ findCustomer Method " + searchCustomerResult);
+		return searchCustomerResult;
+	}
+	
+	//Method to update customer account
+	
+	public String updateCustomer(Customer customer) {
+		System.out.println("Service Class ~ updateCustomer Method " + customer);
+		customer.setCustomerID(customer.getCustomerID());
+		customer.setCustomerName(customer.getCustomerName());
+		customer.setEmail(customer.getEmail());
+		customer.setPhoneNumber(customer.getPhoneNumber());
+		customer.setPaymentMethod(customer.getPaymentMethod());
+		System.out.println("Service Class ~ updateCustomer Method " + customer);
+		customerDAO.save(customer);
+		return "record updated" ;
+	}
+}
