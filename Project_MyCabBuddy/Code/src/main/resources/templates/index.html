@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th=”http://www.Thymeleaf.org/”>
+<html lang="en" xmlns:th=”http://www.thymeleaf.org”>
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" th:href="@{/styles.css}" href="styles.css">
 <title>My Cab Buddy</title>
 </head>
 <body>
@@ -36,27 +35,42 @@
 
         <div class="form-container" id="customerPortalForm">
             <h2>Customer Portal</h2>
-    <div class="customerPortaltabs">
-        <div class="customerPortalTab active" data-tab="customerCreateForm">Create Account</div>
-        <div class="customerPortalTab" data-tab="customerUpdateForm">Update Info.</div>
-        <div class="customerPortalTab" data-tab="customerViewForm">View Customers</div>
-    </div>
+    		<div class="customerPortaltabs">
+        	<div class="customerPortalTab active" data-tab="customerCreateForm">Create Account</div>
+        	<div class="customerPortalTab" data-tab="customerUpdateForm">Update Info.</div>
+        	<div class="customerPortalTab" data-tab="customerViewForm">View Customers</div>
+    	</div>
     
-            <div class="form-container1 tab active" id="customerCreateForm">
-            <form action="/createcustomer" method="post" name="customerCreateForm" onsubmit="validateForm()">
-<!--        <label for="customerID">ID 🆔</label>
-            <input type="number" id="customerID" name="customerID"> -->
+    <!-- code for Controller + Thymeleaf - NOT Working  -->
+ <!--    <div class="form-container1 tab active" id="customerCreateForm">
+            <form th:action="@{/createcustomer}" method="post" name="customerCreateForm" th:object="${Customer}">
             <label for="customerName">Name 📇</label>
-            <input type="text" id="customerName" name="customerName">
+            <input type="text" th:field="*{customerName}" name="customerName">
             <label for="phoneNumber">Phone Number ☎️</label>
-            <input type="text" id="phoneNumber" name="phoneNumber">
+            <input type="text" th:field="*{phoneNumber}" name="phoneNumber">
             <label for="email">Email Address 📫</label>
-            <input type="email" id="email" name="email">
+            <input type="email" th:field="*{email}" name="email">
             <label for="paymentMethod">Payment Method 💳</label>
-            <input type="text" id="paymentMethod" name="paymentMethod">
+            <input type="text" th:field="*{paymentMethod}" name="paymentMethod">
             <button type="submit">Create an Account</button>
             </form>
-            </div>
+            <h3 th:text="${message}" style="color:red"></h3>
+       </div> -->
+       
+       <!-- code for RestController - Working  -->
+        <div class="form-container1 tab active" id="customerCreateForm">
+            <form action="createcustomer" method="post" name="customerCreateForm">
+            <label for="customerName">Name 📇</label>
+            <input type="text" name="customerName" id="customerName">
+            <label for="phoneNumber">Phone Number ☎️</label>
+            <input type="text" name="phoneNumber" id="phoneNumber">
+            <label for="email">Email Address 📫</label>
+            <input type="email" name="email" id="email">
+            <label for="paymentMethod">Payment Method 💳</label>
+            <input type="text" name="paymentMethod" id="paymentMethod">
+            <button type="submit">Create an Account</button>
+            </form>
+       </div> 
             
             <div class="form-container1 tab" id="customerUpdateForm">
 	            <form action="/updatecustomer" method="post">
@@ -79,23 +93,17 @@
             </div>
             
             <div class="form-container1 tab" id="customerViewForm">
-	            <form method="get" th:action="@{/findcustomer/(customerID)}" th:object="${customer}">
+	            <form action="/findcustomer" method="get">
 			        <label for="customerID">Enter Customer ID 🆔</label>
 		            <input type="number" id="customerID" name="customerID"> 
-		            <button type="submit" onsubmit="findcustomer" >Find Customer 🔍</button>
-		            
-		       <!--      <div id="customerdetails">
-        			<h2>Customer Details</h2>
-      		  		<p><strong>ID:</strong> <span th:text="${customer.email)"></span></p> -->
-
+		            <button type="submit" >Find Customer 🔍</button>
+		            <div th:if="${message}" style="color: green;">
+        				<p th:text="${message}"></p>
+   	 				</div>
+		        </form>
     				</div>
-	            </form>
             </div>
         </div>
-    
-        </div>
-        
-        
     <script src="script.js"></script>
 </body>
 </html>

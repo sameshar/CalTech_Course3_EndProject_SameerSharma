@@ -53,8 +53,9 @@ public class BookingService {
 		        	return "Customer Email entered do not exist. <a href='http://localhost:8762/#customerPortalForm'>Register here</a>";
 		        } else {
 		        	bookingdao.save(booking);
-		        	System.out.println(booking);
+		        	System.out.println("Service Class ~ createBooking Method ~ " + booking);
+		        	return "Booking Saved";
 		        }
 			}
-			return "Booking Saves";
+				return "end to booking service class";
 			}}

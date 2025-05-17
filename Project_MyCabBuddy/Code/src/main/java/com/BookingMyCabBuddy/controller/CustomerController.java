@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.BookingMyCabBuddy.bean.Customer;
-import com.BookingMyCabBuddy.dao.CustomerDAO;
 import com.BookingMyCabBuddy.service.CustomerService;
-import jakarta.websocket.server.PathParam;
+
 
 @RestController
 public class CustomerController {
@@ -26,12 +26,13 @@ public class CustomerController {
 	CustomerService customerService;
 
 	// http://localhost:8762/createcustomer
-	@PostMapping(value = "createcustomer", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public String createCustomer(@ModelAttribute Customer customer) {
+	@PostMapping(value = "/createcustomer", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+	public String createCustomer(@ModelAttribute Customer customer, Model mm) {
 		System.out.println(customer.toString());
+		mm.addAttribute("message", "Customer Record Stored");
 		return customerService.createCustomer(customer);
-		//return "customer";
 	}
+	
 	
 	// http://localhost:8762/findcustomer/{customerid}
 		@GetMapping(value = "findcustomer/{customerid}")
@@ -39,6 +40,11 @@ public class CustomerController {
 			System.out.println("Controller FindCustomer Method " + customerid);
 			mm.addAttribute("customer", customer);
 			customer = customerService.findCustomer(customerid);
+			if (customer.isPresent()) {
+	            mm.addAttribute("message", "Customer ID exists!");
+	        } else {
+	            mm.addAttribute("message", "Customer ID does not exist.");
+	        }
 			return customer;
 		}
 	
