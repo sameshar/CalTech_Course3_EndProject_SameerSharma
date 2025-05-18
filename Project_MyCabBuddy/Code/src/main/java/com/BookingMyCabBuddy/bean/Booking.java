@@ -1,6 +1,5 @@
 package com.BookingMyCabBuddy.bean;
 
-import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.lang.NonNull;
 
 import jakarta.persistence.Column;
@@ -8,26 +7,70 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class Booking {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String bookingID;
-	private String source_loc;
-	private String destination_loc;
-	private double distanceTravelled;
-	private double ratePerMile;
-	private double finalAmt;
-	
-	@Column(unique = true)
-	@NonNull
-	private String confirmationNum;
-	
+	private int bookingid;
+	private String source;
+	private String destination;
+	private double distancetravelled;
+	private double ratepermile;
+	private double finalamt;
 	private String email;
+	
+	// Setter and Getter
+
+	public int getBookingid() {
+		return bookingid;
+	}
+
+	public void setBookingid(int bookingid) {
+		this.bookingid = bookingid;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public void setSource(String source) {
+		this.source = source;
+	}
+
+	public String getDestination() {
+		return destination;
+	}
+
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public double getDistancetravelled() {
+		return distancetravelled;
+	}
+
+	public void setDistancetravelled(double distancetravelled) {
+		this.distancetravelled = distancetravelled;
+	}
+
+	public double getRatepermile() {
+		return ratepermile;
+	}
+
+	public void setRatepermile(double ratepermile) {
+		this.ratepermile = ratepermile;
+	}
+
+	public double getFinalamt() {
+		return finalamt;
+	}
+
+	public void setFinalamt(double finalamt) {
+		this.finalamt = finalamt;
+	}
 
 	public String getEmail() {
 		return email;
@@ -37,83 +80,48 @@ public class Booking {
 		this.email = email;
 	}
 
-	public String getBookingID() {
-		return bookingID;
-	}
-
-	public void setBookingID(String bookingID) {
-		this.bookingID = bookingID;
-	}
-
-	public String getSource_loc() {
-		return source_loc;
-	}
-
-	public void setSource_loc(String source_loc) {
-		this.source_loc = source_loc;
-	}
-
-	public String getDestination_loc() {
-		return destination_loc;
-	}
-
-	public void setDestination_loc(String destination_loc) {
-		this.destination_loc = destination_loc;
-	}
-
-	public double getDistanceTravelled() {
-		return distanceTravelled;
-	}
-
-	public void setDistanceTravelled(double distanceTravelled) {
-		this.distanceTravelled = distanceTravelled;
-	}
-
-	public double getRatePerMile() {
-		return ratePerMile;
-	}
-
-	public void setRatePerMile(double ratePerMile) {
-		this.ratePerMile = ratePerMile;
-	}
-
-	public double getFinalAmt() {
-		return finalAmt;
-	}
-
-	public void setFinalAmt(double finalAmt) {
-		this.finalAmt = finalAmt;
-	}
-
-	public String getConfirmationNum() {
-		return confirmationNum;
-	}
-
-	public void setConfirmationNum(String confirmationNum) {
-		this.confirmationNum = confirmationNum;
-	}
-
-	public Booking(String bookingID, String source_loc, String destination_loc, double distanceTravelled,
-			double ratePerMile, double finalAmt, String confirmationNum) {
+	/** Constructor with Fields
+	 * @param bookingid
+	 * @param source
+	 * @param destination
+	 * @param distancetravelled
+	 * @param ratepermile
+	 * @param finalamt
+	 * @param confirmationid
+	 * @param email
+	 */
+	public Booking(int bookingid, String source, String destination, double distancetravelled, double ratepermile,
+			double finalamt, String email) {
 		super();
-		this.bookingID = bookingID;
-		this.source_loc = source_loc;
-		this.destination_loc = destination_loc;
-		this.distanceTravelled = distanceTravelled;
-		this.ratePerMile = ratePerMile;
-		this.finalAmt = finalAmt;
-		this.confirmationNum = confirmationNum;
+		this.bookingid = bookingid;
+		this.source = source;
+		this.destination = destination;
+		this.distancetravelled = distancetravelled;
+		this.ratepermile = ratepermile;
+		this.finalamt = finalamt;
+
+		this.email = email;
 	}
-	
+
+	/** Constructor without fields
+	 * 
+	 */
 	public Booking() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	// toString
+	
 	@Override
 	public String toString() {
-		return "Booking [bookingID=" + bookingID + ", source_loc=" + source_loc + ", destination_loc=" + destination_loc
-				+ ", distanceTravelled=" + distanceTravelled + ", ratePerMile=" + ratePerMile + ", finalAmt=" + finalAmt
-				+ ", confirmationNum=" + confirmationNum + "]";
+		return "Booking [bookingid=" + bookingid + ", source=" + source + ", destination=" + destination
+				+ ", distancetravelled=" + distancetravelled + ", ratepermile=" + ratepermile + ", finalamt=" + finalamt
+				+ ", email=" + email + "]";
 	}
+	
+
+	
+	
+	
 }
