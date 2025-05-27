@@ -6,9 +6,11 @@
 </head>
 <body>
 <h2>My Cab Buddy</h2>
+<p id="msref">from Booking MicroService</p>
 <div class="container">
         <button id="bookCabBtn">Book a Cab</button>
         <button id="customerPortalBtn">Customer Portal</button>
+        <h3 th:text="${message}" style="color:red"></h3>
                
         <div class="form-container" id="bookCabForm">
             <h2>Book a Cab</h2>
@@ -41,65 +43,69 @@
         	<div class="customerPortalTab" data-tab="customerViewForm">View Customers</div>
     	</div>
     
-    <!-- code for Controller + Thymeleaf - NOT Working  -->
- <!--    <div class="form-container1 tab active" id="customerCreateForm">
-            <form th:action="@{/createcustomer}" method="post" name="customerCreateForm" th:object="${Customer}">
-            <label for="customerName">Name 📇</label>
-            <input type="text" th:field="*{customerName}" name="customerName">
-            <label for="phoneNumber">Phone Number ☎️</label>
-            <input type="text" th:field="*{phoneNumber}" name="phoneNumber">
+    <!-- code for Controller + Thymeleaf - Working  -->
+      <div class="form-container1 tab active" id="customerCreateForm">
+            <form action="#" th:action="@{/createcustomer}" method="post" name="customerCreateForm" th:object="${customer}">
+            <label for="customername">Name 📇</label>
+            <input type="text" th:field="*{customername}" name="customername">
+            <label for="phonenumber">Phone Number ☎️</label>
+            <input type="text" th:field="*{phonenumber}" name="phonenumber">
             <label for="email">Email Address 📫</label>
             <input type="email" th:field="*{email}" name="email">
-            <label for="paymentMethod">Payment Method 💳</label>
-            <input type="text" th:field="*{paymentMethod}" name="paymentMethod">
+            <label for="paymentmethod">Payment Method 💳</label>
+            <input type="text" th:field="*{paymentmethod}" name="paymentmethod">
             <button type="submit">Create an Account</button>
             </form>
             <h3 th:text="${message}" style="color:red"></h3>
-       </div> -->
+       </div> 
        
        <!-- code for RestController - Working  -->
-        <div class="form-container1 tab active" id="customerCreateForm">
+       <!--  <div class="form-container1 tab active" id="customerCreateForm">
             <form action="createcustomer" method="post" name="customerCreateForm">
-            <label for="customerName">Name 📇</label>
-            <input type="text" name="customerName" id="customerName">
-            <label for="phoneNumber">Phone Number ☎️</label>
-            <input type="text" name="phoneNumber" id="phoneNumber">
+            <label for="customername">Name 📇</label>
+            <input type="text" name="customername" id="customername">
+            <label for="phonenumber">Phone Number ☎️</label>
+            <input type="text" name="phonenumber" id="phonenumber">
             <label for="email">Email Address 📫</label>
             <input type="email" name="email" id="email">
-            <label for="paymentMethod">Payment Method 💳</label>
-            <input type="text" name="paymentMethod" id="paymentMethod">
+            <label for="paymentmethod">Payment Method 💳</label>
+            <input type="text" name="paymentmethod" id="paymentmethod">
             <button type="submit">Create an Account</button>
             </form>
-       </div> 
+       </div>  -->
             
             <div class="form-container1 tab" id="customerUpdateForm">
-	            <form action="/updatecustomer" method="post">
-	            
-			        <label for="customerID">ID 🆔</label>
-		            <input type="number" id="customerID" name="customerID">
+	            <form action="#" th:action="@{updatecustomer}" method="post" name="customerUpdateForm" th:object="${customer}">
+
+			        
+			        <label for="customerid">ID 🆔</label>
+		            <input type="number" th:field="*{customerid}" id="customerid">
 		            
 		            <label for="email">Email Address 📫</label>
-		            <input type="email" id="email" name="email">
+		            <input type="email" th:field="*{email}" id="email">
 		            
-		            <label for="customerName">Name 📇</label>
-		            <input type="text" id="customerName" name="customerName">
-		            <label for="phoneNumber">Phone Number ☎️</label>
-		            <input type="text" id="phoneNumber" name="phoneNumber">
+		            <label for="customername">Name 📇</label>
+		            <input type="text" th:field="*{customername}" id="customername">
 		            
-		            <label for="paymentMethod">Payment Method 💳</label>
-		            <input type="text" id="paymentMethod" name="paymentMethod">
+		            <label for="phonenumber">Phone Number ☎️</label>
+		            <input type="text" th:field="*{phonenumber}" id="phonenumber">
+		            
+		            <label for="paymentmethod">Payment Method 💳</label>
+		            <input type="text" th:field="*{paymentmethod}" id="paymentmethod">
+		            
 		            <button type="submit">Update</button>
+		            <h3 th:text="${message}" style="color:red"></h3>
 	            </form>
             </div>
             
             <div class="form-container1 tab" id="customerViewForm">
-	            <form action="/findcustomer" method="get">
-			        <label for="customerID">Enter Customer ID 🆔</label>
-		            <input type="number" id="customerID" name="customerID"> 
+	            
+	            <form action="#" th:action="@{/findcustomer}" method="get" name="findCustomerForm" th:object="${customer}">
+			        <!-- <label for="customerid">Enter Customer ID 🆔</label>
+		            <input type="number" id="customerid" name="customerid">  -->
+		            <label for="customerid">Enter Customer ID 🆔</label>
+            		<input type="number" th:field="*{customerid}" name="customerid">
 		            <button type="submit" >Find Customer 🔍</button>
-		            <div th:if="${message}" style="color: green;">
-        				<p th:text="${message}"></p>
-   	 				</div>
 		        </form>
     				</div>
             </div>

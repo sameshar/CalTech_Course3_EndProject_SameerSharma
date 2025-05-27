@@ -18,7 +18,7 @@ public interface CustomerDAO extends JpaRepository<Customer, Integer>{
 	
 	@Modifying
 	@Transactional
-	@Query("update Customer c set c.email = :email where c.customerID = :customerID")
-	int updateCustomer(@Param("customerID") int customerID, @Param("email") String email);
+	@Query("update Customer c set c.email = :email where c.customerid = :customerid")
+	int updateCustomer(@Param("customerid") int customerid, @Param("email") String email);
 	
 }

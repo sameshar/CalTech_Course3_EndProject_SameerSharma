@@ -3,10 +3,22 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="true"/>
 	<list key="searchhistory">
+		<item value="resources"/>
+		<item value="customerID"/>
+		<item value="customerName"/>
+		<item value="phone"/>
+		<item value="payment"/>
+		<item value="phoneNumber"/>
+		<item value="paymentMethod"/>
+		<item value="customerid"/>
 		<item value="tl"/>
 		<item value="div"/>
 	</list>
 	<list key="replacehistory">
+		<item value="customerid"/>
+		<item value="phonenumber"/>
+		<item value="customername"/>
+		<item value="paymentmethod"/>
 		<item value="button"/>
 	</list>
 </section>

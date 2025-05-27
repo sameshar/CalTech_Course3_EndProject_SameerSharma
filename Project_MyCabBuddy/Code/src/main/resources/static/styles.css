@@ -124,3 +124,15 @@ button:last-child:hover {
 	justify-content: center;
   align-items: center;
 }
+
+#msref {
+  font-size: 1rem; /* Adjust size as needed */
+  font-weight: 400; /* Normal weight */
+  font-style: italic;
+  color: #555555; /* Subtle gray color */
+  text-align: center; /* Center-align text */
+  margin: 10px 0; /* Add some spacing */
+  font-family: 'Arial', sans-serif; /* Choose a clean font */
+  line-height: 1.5; /* Improve readability */
+}
+

@@ -1,14 +1,10 @@
 package com.BookingMyCabBuddy.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.BookingMyCabBuddy.bean.Booking;
+import org.springframework.stereotype.Service;
 import com.BookingMyCabBuddy.bean.Customer;
 import com.BookingMyCabBuddy.dao.CustomerDAO;
 
@@ -21,8 +17,8 @@ public class CustomerService {
 //Method to CREATE a customer account after ID and Email address uniqueness validation
 	
 	public String createCustomer(Customer customer) {
-		System.out.println("SC > " + customer.toString());
-		Optional<Customer> result = customerDAO.findById(customer.getCustomerID());
+		System.out.println("SC ~ CreateCustomer Method ~ " + customer.toString());
+		Optional<Customer> result = customerDAO.findById(customer.getCustomerid());
 		String resultEmail = customer.getEmail();
 		if (result.isPresent()) {
 			Customer cc = result.get();
@@ -46,20 +42,18 @@ public class CustomerService {
 	
 	//Method to UPDATE customer account
 	
-	public String updateCustomer(int customerID, Customer customer) {
-		System.out.println("from Service class ~ updateCustomer method ~ Email received is " + customer.getEmail());
-		System.out.println("from Service class ~ updateCustomer method ~ Name received is " + customer.getCustomerName());
-		String custemail = customer.getEmail();
-		String custname = customer.getCustomerName();
-		//customerDAO.save(customer);
-		customerDAO.updateCustomer(customerID, custemail);
+	public String updateCustomer(int customerid, Customer customer) {
+		System.out.println("Service class ~ updateCustomer method ~ Email received is " + customer.getEmail());
+		System.out.println("Service class ~ updateCustomer method ~ Name received is " + customer.getCustomername());
+		customerDAO.save(customer);
 		return "record updated";
 	}
 	
 	//Method to DELETE customer account
 	
-	public String deleteCustomer(int customerID) {
-		customerDAO.deleteById(customerID);
+	public String deleteCustomer(int customerid) {
+		System.out.println("Service delete method called." + customerid);
+		customerDAO.deleteById(customerid);
 		return "record deleted";
 	}
 }
